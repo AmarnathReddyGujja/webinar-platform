@@ -1,0 +1,216 @@
+/* General container styling */
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+.homepage-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: clamp(10px, 3vw, 20px);
+    position: relative;
+    overflow: hidden;
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.7),
+        rgba(0, 0, 0, 0.7)
+    ),
+    url('https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=2012&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Mobile-specific background handling */
+@media (max-width: 768px) {
+    .homepage-container {
+        background-attachment: scroll; /* Changes from fixed to scroll for better mobile performance */
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.8),
+            rgba(0, 0, 0, 0.8)
+        ),
+        url('https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=800&auto=format&fit=crop'); /* Lower resolution image for mobile */
+        min-height: calc(100vh - 60px); /* Adjust for mobile nav bar */
+    }
+}
+
+/* Gradient overlays */
+.homepage-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        circle at center,
+        rgba(0, 0, 0, 0.4) 0%,
+        rgba(0, 0, 0, 0.8) 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+}
+
+.homepage-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        45deg,
+        rgba(0, 230, 230, 0.1),
+        rgba(0, 123, 255, 0.1)
+    );
+    animation: gradientShift 10s ease infinite;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.content-section {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: min(1200px, 90vw);
+    margin: 0 auto;
+    padding: clamp(1rem, 3vw, 2rem);
+}
+
+.recent-webinars {
+    margin-top: clamp(2rem, 5vw, 4rem);
+    padding: clamp(1rem, 3vw, 2rem);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: clamp(10px, 2vw, 20px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.recent-webinars h2 {
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: clamp(1rem, 3vw, 2rem);
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Animations */
+@keyframes gradientShift {
+    0% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0.3;
+    }
+}
+
+/* Loading state */
+.homepage-container.loading {
+    background: linear-gradient(
+        45deg,
+        var(--background-dark),
+        var(--background-light)
+    );
+}
+
+/* Particle effects */
+.particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.particle {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: float 15s infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateY(-100vh) translateX(100px);
+        opacity: 0;
+    }
+}
+
+/* Additional mobile optimizations */
+@media (max-width: 480px) {
+    .homepage-container {
+        padding: 10px;
+    }
+
+    .content-section {
+        padding: 0.8rem;
+    }
+
+    .recent-webinars {
+        margin-top: 1.5rem;
+        padding: 1rem;
+        border-radius: 10px;
+    }
+
+    .recent-webinars h2 {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+    }
+
+    /* Optimize animations for mobile */
+    .particle {
+        display: none; /* Disable particles on mobile for better performance */
+    }
+}
+
+/* Tablet optimizations */
+@media (min-width: 481px) and (max-width: 768px) {
+    .homepage-container {
+        background-position: center 20%; /* Adjust background position for tablets */
+    }
+
+    .content-section {
+        max-width: 95vw;
+    }
+}
+
+/* Landscape mode handling */
+@media (max-height: 500px) and (orientation: landscape) {
+    .homepage-container {
+        min-height: 120vh; /* Ensure full coverage in landscape */
+    }
+
+    .content-section {
+        padding-top: 60px; /* Account for navbar */
+    }
+}
+
+/* High-DPI screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .homepage-container {
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.7),
+            rgba(0, 0, 0, 0.7)
+        ),
+        url('https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=100&w=2400&auto=format&fit=crop'); /* Higher quality image for retina displays */
+    }
+}
+
+  

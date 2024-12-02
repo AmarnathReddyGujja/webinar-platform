@@ -1,0 +1,126 @@
+/* Webinars.css */
+
+.webinars-container {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 20px;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.webinars-container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: var(--text-light);
+  font-size: 2.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+}
+
+.webinars-container h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: var(--primary-color);
+  border-radius: 2px;
+}
+
+.webinars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.webinar-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.webinar-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.webinar-image-container {
+  height: 200px;
+  overflow: hidden;
+}
+
+.webinar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.webinar-card:hover .webinar-image {
+  transform: scale(1.1);
+}
+
+.webinar-content {
+  padding: 1.5rem;
+}
+
+.webinar-content h3 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.webinar-date,
+.webinar-organizer {
+  color: var(--text-light);
+  opacity: 0.8;
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+.webinar-description {
+  color: var(--text-light);
+  opacity: 0.9;
+  line-height: 1.6;
+  margin: 1rem 0;
+}
+
+.registration-link {
+  display: inline-block;
+  background: var(--primary-color);
+  color: var(--text-dark);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+}
+
+.registration-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 230, 230, 0.3);
+  background: #00ffff;
+}
+
+.webinar-time {
+  color: var(--text-light);
+  opacity: 0.8;
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .webinars-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+
+  .webinar-card {
+    margin-bottom: 1rem;
+  }
+}

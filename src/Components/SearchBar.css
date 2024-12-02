@@ -1,0 +1,157 @@
+/* General Styles */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 50vh;
+  padding: 40px 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 3;
+}
+
+/* Heading Styles */
+.heading {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 4;
+}
+
+.heading h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: #ffffff !important;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-family: 'Roboto', sans-serif;
+  position: relative;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  text-shadow: 
+    1px 1px 2px rgba(0, 0, 0, 0.3),
+    0 0 5px rgba(255, 255, 255, 0.2);
+}
+
+.heading h2 {
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  color: #ffffff !important;
+  margin-top: 1rem;
+  padding: 0 1rem;
+  line-height: 1.4;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 4;
+}
+
+/* Remove the background-clip and gradient that might interfere with text color */
+.heading h1::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: none;
+  z-index: -1;
+}
+
+/* Search Container */
+.search-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.search-container form {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.search-input {
+  flex: 1;
+  padding: clamp(0.5rem, 2vw, 0.8rem) clamp(0.8rem, 2vw, 1.2rem);
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
+  border: 1px solid var(--primary-color);
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.search-button {
+  padding: clamp(0.5rem, 2vw, 0.8rem) clamp(1rem, 2vw, 1.5rem);
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
+  white-space: nowrap;
+  background-color: var(--primary-color);
+  color: var(--text-dark);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.search-button:hover {
+  background-color: #00ffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 230, 230, 0.3);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .hero {
+    padding: 20px 10px;
+  }
+
+  .heading h1 {
+    text-shadow: 
+      1px 1px 2px rgba(0, 0, 0, 0.5),
+      0 0 8px rgba(255, 255, 255, 0.3);
+  }
+
+  .search-container form {
+    flex-direction: column;
+  }
+
+  .search-input,
+  .search-button {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .heading h1 {
+    font-size: 1.8rem;
+    letter-spacing: 0.1em;
+  }
+
+  .heading h2 {
+    font-size: 1rem;
+  }
+}
+
+/* Animation */
+@keyframes slideIn {
+  0% { width: 0; }
+  100% { width: 100%; }
+}
+
+/* Add glow effect with reduced intensity */
+@keyframes glow {
+  0% { text-shadow: 0 0 2px #fff, 0 0 4px #fff, 0 0 6px var(--primary-color); }
+  50% { text-shadow: 0 0 4px #fff, 0 0 6px #fff, 0 0 8px var(--primary-color); }
+  100% { text-shadow: 0 0 2px #fff, 0 0 4px #fff, 0 0 6px var(--primary-color); }
+}
+
+.heading h1 {
+  animation: glow 4s ease-in-out infinite;
+}
+
+  

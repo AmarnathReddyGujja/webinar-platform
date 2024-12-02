@@ -1,0 +1,23 @@
+{
+    "webinars": [
+      {
+        "id": 1,
+        "title": "React Basics",
+        "date": "2024-11-15",
+        "description": "An introductory webinar on ReactJS fundamentals.",
+        "organizedBy": "John Doe",
+        "picture": "https://via.placeholder.com/400x200.png?text=React+Basics"
+      },
+      {
+        "id": 2,
+        "title": "Advanced Node.js",
+        "date": "2024-12-01",
+        "description": "Deep dive into Node.js and building scalable applications.",
+        "organizedBy": "Jane Smith",
+        "picture": "https://via.placeholder.com/400x200.png?text=Advanced+Node.js"
+      }
+    ]
+  }
+  
+  
+  
