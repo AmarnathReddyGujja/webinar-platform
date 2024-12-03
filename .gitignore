@@ -7,6 +7,9 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Ignore the fleet-anagram directory
+fleet-anagram-440300-f8-b0995f76b129.json
+
 node_modules
 dist
 dist-ssr
