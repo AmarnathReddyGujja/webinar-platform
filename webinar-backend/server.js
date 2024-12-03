@@ -60,16 +60,26 @@ const upload = multer({
 
 // Authentication middleware
 const authenticateToken = (req, res, next) => {
-  const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1];
+  try {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
 
-  if (token == null) return res.sendStatus(401);
+    if (!token) {
+      return res.status(401).json({ message: 'No token provided' });
+    }
 
-  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-    if (err) return res.sendStatus(403);
-    req.user = user;
-    next();
-  });
+    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+      if (err) {
+        console.error('JWT Verification Error:', err);
+        return res.status(403).json({ message: 'Invalid or expired token' });
+      }
+      req.user = user;
+      next();
+    });
+  } catch (error) {
+    console.error('Auth Middleware Error:', error);
+    return res.status(500).json({ message: 'Authentication error' });
+  }
 };
 
 // Update User Schema
@@ -116,9 +126,26 @@ app.post('/api/login', async (req, res) => {
       return res.status(400).json({ message: 'Invalid email or password' });
     }
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-    res.json({ token, user: { id: user._id, name: user.name, email: user.email } });
+    const token = jwt.sign(
+      { 
+        id: user._id,
+        email: user.email,
+        name: user.name 
+      }, 
+      process.env.JWT_SECRET, 
+      { expiresIn: '24h' }
+    );
+
+    res.json({ 
+      token,
+      user: { 
+        id: user._id, 
+        name: user.name, 
+        email: user.email 
+      } 
+    });
   } catch (error) {
+    console.error('Login Error:', error);
     res.status(500).json({ message: 'Error logging in', error: error.message });
   }
 });
